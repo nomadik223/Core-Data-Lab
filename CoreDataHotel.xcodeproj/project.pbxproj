@@ -19,6 +19,7 @@
 		C8062F4C1EAF92F40079EB7E /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F4B1EAF92F40079EB7E /* RoomsViewController.m */; };
 		C8062F4F1EAFBC6C0079EB7E /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F4E1EAFBC6C0079EB7E /* DatePickerViewController.m */; };
 		C8062F521EAFCF980079EB7E /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */; };
+		C8062F551EB0E64E0079EB7E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F541EB0E64E0079EB7E /* BookViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		C8062F4E1EAFBC6C0079EB7E /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		C8062F501EAFCF980079EB7E /* AvailabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailabilityViewController.h; sourceTree = "<group>"; };
 		C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailabilityViewController.m; sourceTree = "<group>"; };
+		C8062F531EB0E64E0079EB7E /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
+		C8062F541EB0E64E0079EB7E /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				C8062F4E1EAFBC6C0079EB7E /* DatePickerViewController.m */,
 				C8062F501EAFCF980079EB7E /* AvailabilityViewController.h */,
 				C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */,
+				C8062F531EB0E64E0079EB7E /* BookViewController.h */,
+				C8062F541EB0E64E0079EB7E /* BookViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				C8062F331EAE607E0079EB7E /* CoreDataHotel.xcdatamodeld in Sources */,
 				C8062F2A1EAE607E0079EB7E /* AppDelegate.m in Sources */,
 				C8062F521EAFCF980079EB7E /* AvailabilityViewController.m in Sources */,
+				C8062F551EB0E64E0079EB7E /* BookViewController.m in Sources */,
 				C8062F491EAEA48A0079EB7E /* HotelsViewController.m in Sources */,
 				C8062F4C1EAF92F40079EB7E /* RoomsViewController.m in Sources */,
 				C8062F271EAE607E0079EB7E /* main.m in Sources */,
