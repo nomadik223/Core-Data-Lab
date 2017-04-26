@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
+#import "DatePickerViewController.h"
 
 @interface ViewController ()
 
@@ -33,16 +34,28 @@
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     
-    browseButton.backgroundColor = [UIColor colorWithRed:9.0 green:0.0 blue:0.00 alpha:1.0];
+    browseButton.backgroundColor = [UIColor colorWithRed:0.99 green:0.1 blue:0.1 alpha:0.0];
     
-    [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
-    [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
+//    [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
+//    [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
+//    
+//    [AutoLayout equalHeightConstraintFromView:browseButton
+//                                       toView:self.view
+//                               withMultiplier:0.2];
     
-    [AutoLayout equalHeightConstraintFromView:browseButton
+    
+    [AutoLayout leadingConstraintFrom:bookButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:bookButton toView:self.view];
+    
+    [AutoLayout equalHeightConstraintFromView:bookButton
                                        toView:self.view
                                withMultiplier:0.2];
     
+    
+    
     [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    
+    [bookButton addTarget:self action:@selector(bookButtonSelected) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -50,6 +63,14 @@
     HotelsViewController *newHotelsView = [[HotelsViewController alloc]init];
     
     [self.navigationController pushViewController:newHotelsView animated:YES];
+}
+
+- (void)bookButtonSelected{
+    
+    DatePickerViewController *datePickerController = [[DatePickerViewController alloc] init];
+    
+    [self.navigationController pushViewController:datePickerController animated:YES];
+    
 }
 
 - (UIButton *)createButtonWithTitle:(NSString *)title{

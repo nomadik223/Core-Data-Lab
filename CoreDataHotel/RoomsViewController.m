@@ -71,8 +71,6 @@
     }
     
     Room *room = [self.allRooms objectAtIndex:indexPath.row];
-    //    NSLog(@"%hd", room.number);
-    //    NSNumber *roomNumber = [[NSNumber alloc]initWithUnsignedShort:room.number];
     cell.textLabel.text = [NSString stringWithFormat:@"%hd",room.number];
     
     return cell;
