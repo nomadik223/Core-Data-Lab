@@ -20,7 +20,18 @@
 		C8062F4F1EAFBC6C0079EB7E /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F4E1EAFBC6C0079EB7E /* DatePickerViewController.m */; };
 		C8062F521EAFCF980079EB7E /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */; };
 		C8062F551EB0E64E0079EB7E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F541EB0E64E0079EB7E /* BookViewController.m */; };
+		C8062F651EB114790079EB7E /* AutoLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F641EB114790079EB7E /* AutoLayoutTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C8062F5F1EB111D10079EB7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8062F1A1EAE607E0079EB7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8062F211EAE607E0079EB7E;
+			remoteInfo = CoreDataHotel;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C8062F221EAE607E0079EB7E /* CoreDataHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,10 +57,20 @@
 		C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailabilityViewController.m; sourceTree = "<group>"; };
 		C8062F531EB0E64E0079EB7E /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		C8062F541EB0E64E0079EB7E /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
+		C8062F5A1EB111D10079EB7E /* CoreDataHotelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataHotelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8062F5E1EB111D10079EB7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8062F641EB114790079EB7E /* AutoLayoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C8062F1F1EAE607E0079EB7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8062F571EB111D10079EB7E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				C8062F241EAE607E0079EB7E /* CoreDataHotel */,
+				C8062F5B1EB111D10079EB7E /* CoreDataHotelTests */,
 				C8062F231EAE607E0079EB7E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				C8062F221EAE607E0079EB7E /* CoreDataHotel.app */,
+				C8062F5A1EB111D10079EB7E /* CoreDataHotelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +159,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C8062F5B1EB111D10079EB7E /* CoreDataHotelTests */ = {
+			isa = PBXGroup;
+			children = (
+				C8062F5E1EB111D10079EB7E /* Info.plist */,
+				C8062F641EB114790079EB7E /* AutoLayoutTests.m */,
+			);
+			path = CoreDataHotelTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,6 +188,24 @@
 			productReference = C8062F221EAE607E0079EB7E /* CoreDataHotel.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C8062F591EB111D10079EB7E /* CoreDataHotelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8062F611EB111D10079EB7E /* Build configuration list for PBXNativeTarget "CoreDataHotelTests" */;
+			buildPhases = (
+				C8062F561EB111D10079EB7E /* Sources */,
+				C8062F571EB111D10079EB7E /* Frameworks */,
+				C8062F581EB111D10079EB7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8062F601EB111D10079EB7E /* PBXTargetDependency */,
+			);
+			name = CoreDataHotelTests;
+			productName = CoreDataHotelTests;
+			productReference = C8062F5A1EB111D10079EB7E /* CoreDataHotelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -169,6 +219,12 @@
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 8EL2FG2Q62;
 						ProvisioningStyle = Automatic;
+					};
+					C8062F591EB111D10079EB7E = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 8EL2FG2Q62;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C8062F211EAE607E0079EB7E;
 					};
 				};
 			};
@@ -186,6 +242,7 @@
 			projectRoot = "";
 			targets = (
 				C8062F211EAE607E0079EB7E /* CoreDataHotel */,
+				C8062F591EB111D10079EB7E /* CoreDataHotelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -198,6 +255,13 @@
 				C8062F461EAE95270079EB7E /* Hotels.json in Resources */,
 				C8062F381EAE607E0079EB7E /* LaunchScreen.storyboard in Resources */,
 				C8062F351EAE607E0079EB7E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8062F581EB111D10079EB7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +285,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8062F561EB111D10079EB7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8062F651EB114790079EB7E /* AutoLayoutTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C8062F601EB111D10079EB7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8062F211EAE607E0079EB7E /* CoreDataHotel */;
+			targetProxy = C8062F5F1EB111D10079EB7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C8062F361EAE607E0079EB7E /* LaunchScreen.storyboard */ = {
@@ -351,6 +431,32 @@
 			};
 			name = Release;
 		};
+		C8062F621EB111D10079EB7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 8EL2FG2Q62;
+				INFOPLIST_FILE = CoreDataHotelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AustinRogers.CoreDataHotelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreDataHotel.app/CoreDataHotel";
+			};
+			name = Debug;
+		};
+		C8062F631EB111D10079EB7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 8EL2FG2Q62;
+				INFOPLIST_FILE = CoreDataHotelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AustinRogers.CoreDataHotelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreDataHotel.app/CoreDataHotel";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -368,6 +474,14 @@
 			buildConfigurations = (
 				C8062F3D1EAE607E0079EB7E /* Debug */,
 				C8062F3E1EAE607E0079EB7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C8062F611EB111D10079EB7E /* Build configuration list for PBXNativeTarget "CoreDataHotelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8062F621EB111D10079EB7E /* Debug */,
+				C8062F631EB111D10079EB7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
