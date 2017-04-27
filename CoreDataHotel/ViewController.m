@@ -10,6 +10,7 @@
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
 #import "DatePickerViewController.h"
+#import "LookupReservationViewController.h"
 
 @interface ViewController ()
 
@@ -31,26 +32,32 @@
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
-    browseButton.backgroundColor = [UIColor colorWithRed:0.60 green:0.00 blue:0.00 alpha:1.0];
+    browseButton.backgroundColor = [UIColor colorWithRed:0.60 green:0.0 blue:0.00 alpha:1.0];
     
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
-    bookButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.60 blue:0.0 alpha:1.0];
+    bookButton.backgroundColor = [UIColor colorWithRed:0.70 green:0.00 blue:0.0 alpha:1.0];
     
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
-    lookupButton.backgroundColor = [UIColor colorWithRed:0.00 green:0.0 blue:0.60 alpha:1.0];
+    lookupButton.backgroundColor = [UIColor colorWithRed:0.80 green:0.00 blue:0.00 alpha:1.0];
     
     CGFloat statusBarHeight = 20.0;
     CGFloat topMargin = navBarHeight + statusBarHeight;
     CGFloat windowHeight = self.view.frame.size.height;
     CGFloat buttonHeight = ((windowHeight - topMargin) / 3);
     
-    NSDictionary *viewDictionary = @{@"browseButton": browseButton, @"bookButton": bookButton, @"lookupButton": lookupButton};
+    NSDictionary *viewDictionary = @{@"browseButton": browseButton,
+                                     @"bookButton": bookButton,
+                                     @"lookupButton": lookupButton};
     
-    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"buttonHeight": [NSNumber numberWithFloat:buttonHeight]};
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin],
+                                        @"buttonHeight": [NSNumber numberWithFloat:buttonHeight]};
     
     NSString *visualFormatString = @"V:|-topMargin-[browseButton(==buttonHeight)][bookButton(==browseButton)][lookupButton(==browseButton)]|";
     
-    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
+    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary
+                               forMetricsDictionary:metricsDictionary
+                                        withOptions:0
+                                   withVisualFormat:visualFormatString];
     
     [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
@@ -63,6 +70,7 @@
     
     [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
     [bookButton addTarget:self action:@selector(bookButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [lookupButton addTarget:self action:@selector(lookupButtonSelected) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)browseButtonSelected{
@@ -75,6 +83,12 @@
     DatePickerViewController *newDatePickerView = [[DatePickerViewController alloc]init];
     
     [self.navigationController pushViewController:newDatePickerView animated:YES];
+}
+
+- (void)lookupButtonSelected{
+    LookupReservationViewController *newLookupView = [[LookupReservationViewController alloc]init];
+    
+    [self.navigationController pushViewController:newLookupView animated:YES];
 }
 
 - (UIButton *)createButtonWithTitle:(NSString *)title{

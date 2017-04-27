@@ -43,14 +43,24 @@
 }
 
 - (void)setupDatePickers{
+    
+    UILabel *startDateLabel = [[UILabel alloc]init];
+    startDateLabel.text = @"Start Date";
+    startDateLabel.textAlignment = NSTextAlignmentCenter;
+    
     self.startDate = [[UIDatePicker alloc]init];
     self.startDate.datePickerMode = UIDatePickerModeDate;
+    
+    UILabel *endDateLabel = [[UILabel alloc]init];
+    endDateLabel.text = @"End Date";
+    endDateLabel.textAlignment = NSTextAlignmentCenter;
     
     self.endDate = [[UIDatePicker alloc]init];
     self.endDate.datePickerMode = UIDatePickerModeDate;
     
-    
+    [self.view addSubview:startDateLabel];
     [self.view addSubview:self.startDate];
+    [self.view addSubview:endDateLabel];
     [self.view addSubview:self.endDate];
     
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
@@ -58,16 +68,25 @@
     CGFloat statusBarHeight = 20.0;
     CGFloat topMargin = navBarHeight + statusBarHeight;
     CGFloat windowHeight = self.view.frame.size.height;
-    CGFloat frameHeight = ((windowHeight - topMargin) / 2);
+    CGFloat frameHeight = ((windowHeight - topMargin - statusBarHeight - statusBarHeight) / 2);
     
-    NSDictionary *viewDictionary = @{@"startDate": self.startDate, @"endDate": self.endDate};
+    NSDictionary *viewDictionary = @{@"startDate": self.startDate,
+                                     @"endDate": self.endDate,
+                                     @"startDateLabel": startDateLabel,
+                                     @"endDateLabel": endDateLabel};
     
-    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin],
+                                        @"frameHeight": [NSNumber numberWithFloat:frameHeight],
+                                        @"statusBarHeight": [NSNumber numberWithFloat:statusBarHeight]};
     
-    NSString *visualFormatString = @"V:|-topMargin-[startDate(==frameHeight)][endDate(==startDate)]|";
+    NSString *visualFormatString = @"V:|-topMargin-[startDateLabel(==statusBarHeight)][startDate(==frameHeight)][endDateLabel(==startDateLabel)][endDate(==startDate)]|";
     
+    [AutoLayout leadingConstraintFrom:startDateLabel toView:self.view];
+    [AutoLayout trailingConstraintFrom:startDateLabel toView:self.view];
     [AutoLayout leadingConstraintFrom:self.startDate toView:self.view];
     [AutoLayout trailingConstraintFrom:self.startDate toView:self.view];
+    [AutoLayout leadingConstraintFrom:endDateLabel toView:self.view];
+    [AutoLayout trailingConstraintFrom:endDateLabel toView:self.view];
     [AutoLayout leadingConstraintFrom:self.endDate toView:self.view];
     [AutoLayout trailingConstraintFrom:self.endDate toView:self.view];
     
@@ -76,7 +95,9 @@
                                         withOptions:0
                                    withVisualFormat:visualFormatString];
     
+    [startDateLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.startDate setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [endDateLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.endDate setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 }

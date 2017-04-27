@@ -8,6 +8,7 @@
 
 #import "BookViewController.h"
 #import "AutoLayout.h"
+#import "AppDelegate.h"
 
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
@@ -15,7 +16,17 @@
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
 
+#import "Reservation+CoreDataClass.h"
+#import "Reservation+CoreDataProperties.h"
+
+#import "Guest+CoreDataClass.h"
+#import "Guest+CoreDataProperties.h"
+
 @interface BookViewController ()
+
+@property(strong, nonatomic)UITextField *firstNameField;
+@property(strong, nonatomic)UITextField *lastNameField;
+@property(strong, nonatomic)UITextField *emailField;
 
 @end
 
@@ -38,13 +49,46 @@
 
 - (void)setupDoneButton{
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                               target:self
+                                                                               action:@selector(doneButtonPressed)];
     
     [self.navigationItem setRightBarButtonItem:doneButton];
     
 }
 
 - (void)doneButtonPressed{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+    
+    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:context];
+    
+    reservation.startDate = self.startDate;
+    reservation.endDate = self.endDate;
+    reservation.room = self.selectedRoom;
+    
+//    self.selectedRoom.reservation = [self.selectedRoom.reservation setByAddingObject:reservation];
+//
+//    reservation.guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:context];
+//    if (self.firstNameField.text != nil && self.lastNameField.text != nil) {
+//        reservation.guest.firstName = self.firstNameField.text;
+//        NSLog(@"%@", reservation.guest.firstName);
+//        reservation.guest.lastName = self.lastNameField.text;
+//        reservation.guest.email = self.emailField.text;
+//    } else {
+//        return NSLog(@"Name field was nil.");
+//    }
+    
+    NSError *saveError;
+    [context save:&saveError];
+    
+    if (saveError) {
+        NSLog(@"Save error is %@", saveError);
+    } else {
+        NSLog(@"Save reservation successful!");
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
     
 }
 
@@ -58,23 +102,23 @@
     roomNumber.text = [NSString stringWithFormat:@"Room Number: %i", self.selectedRoom.number];
     roomNumber.textAlignment = NSTextAlignmentCenter;
     
-    UITextField *firstNameField = [[UITextField alloc]init];
-    firstNameField.placeholder = @"First Name (Required)";
-    firstNameField.keyboardType = UIKeyboardTypeDefault;
+    self.firstNameField = [[UITextField alloc]init];
+    self.firstNameField.placeholder = @"First Name (Required)";
+    self.firstNameField.keyboardType = UIKeyboardTypeDefault;
     
-    UITextField *lastNameField = [[UITextField alloc]init];
-    lastNameField.placeholder = @"Last Name (Required)";
-    lastNameField.keyboardType = UIKeyboardTypeDefault;
+    self.lastNameField = [[UITextField alloc]init];
+    self.lastNameField.placeholder = @"Last Name (Required)";
+    self.lastNameField.keyboardType = UIKeyboardTypeDefault;
     
-    UITextField *emailField = [[UITextField alloc]init];
-    emailField.placeholder = @"Email Address";
-    emailField.keyboardType = UIKeyboardTypeEmailAddress;
+    self.emailField = [[UITextField alloc]init];
+    self.emailField.placeholder = @"Email Address";
+    self.emailField.keyboardType = UIKeyboardTypeEmailAddress;
     
     [self.view addSubview:hotelName];
     [self.view addSubview:roomNumber];
-    [self.view addSubview:firstNameField];
-    [self.view addSubview:lastNameField];
-    [self.view addSubview:emailField];
+    [self.view addSubview:self.firstNameField];
+    [self.view addSubview:self.lastNameField];
+    [self.view addSubview:self.emailField];
     
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
@@ -83,9 +127,14 @@
     CGFloat windowHeight = self.view.frame.size.height;
     CGFloat frameHeight = ((windowHeight - topMargin) / 10);
     
-    NSDictionary *viewDictionary = @{@"hotelName": hotelName, @"roomNumber": roomNumber, @"firstNameField": firstNameField, @"lastNameField": lastNameField, @"emailField": emailField};
+    NSDictionary *viewDictionary = @{@"hotelName": hotelName,
+                                     @"roomNumber": roomNumber,
+                                     @"firstNameField": self.firstNameField,
+                                     @"lastNameField": self.lastNameField,
+                                     @"emailField": self.emailField};
     
-    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin],
+                                        @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
     
     NSString *visualFormatString = @"V:|-topMargin-[hotelName(==frameHeight)][roomNumber(==frameHeight)]-[firstNameField(==frameHeight)]-[lastNameField(==firstNameField)]-[emailField(==firstNameField)]";
     
@@ -93,12 +142,12 @@
     [AutoLayout trailingConstraintFrom:hotelName toView:self.view];
     [AutoLayout leadingConstraintFrom:roomNumber toView:self.view];
     [AutoLayout trailingConstraintFrom:roomNumber toView:self.view];
-    [AutoLayout leadingConstraintFrom:firstNameField toView:self.view];
-    [AutoLayout trailingConstraintFrom:firstNameField toView:self.view];
-    [AutoLayout leadingConstraintFrom:lastNameField toView:self.view];
-    [AutoLayout trailingConstraintFrom:lastNameField toView:self.view];
-    [AutoLayout leadingConstraintFrom:emailField toView:self.view];
-    [AutoLayout trailingConstraintFrom:emailField toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.firstNameField toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.firstNameField toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.lastNameField toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.lastNameField toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.emailField toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.emailField toView:self.view];
     
     [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary
                                forMetricsDictionary:metricsDictionary
@@ -107,9 +156,9 @@
     
     [hotelName setTranslatesAutoresizingMaskIntoConstraints:NO];
     [roomNumber setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [firstNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [lastNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [emailField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.firstNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.lastNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.emailField setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 }
 

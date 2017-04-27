@@ -21,6 +21,7 @@
 		C8062F521EAFCF980079EB7E /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */; };
 		C8062F551EB0E64E0079EB7E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F541EB0E64E0079EB7E /* BookViewController.m */; };
 		C8062F651EB114790079EB7E /* AutoLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F641EB114790079EB7E /* AutoLayoutTests.m */; };
+		C8062F681EB23B780079EB7E /* LookupReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8062F671EB23B780079EB7E /* LookupReservationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		C8062F5A1EB111D10079EB7E /* CoreDataHotelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataHotelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8062F5E1EB111D10079EB7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8062F641EB114790079EB7E /* AutoLayoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutTests.m; sourceTree = "<group>"; };
+		C8062F661EB23B780079EB7E /* LookupReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupReservationViewController.h; sourceTree = "<group>"; };
+		C8062F671EB23B780079EB7E /* LookupReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupReservationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				C8062F511EAFCF980079EB7E /* AvailabilityViewController.m */,
 				C8062F531EB0E64E0079EB7E /* BookViewController.h */,
 				C8062F541EB0E64E0079EB7E /* BookViewController.m */,
+				C8062F661EB23B780079EB7E /* LookupReservationViewController.h */,
+				C8062F671EB23B780079EB7E /* LookupReservationViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				C8062F2D1EAE607E0079EB7E /* ViewController.m in Sources */,
 				C8062F331EAE607E0079EB7E /* CoreDataHotel.xcdatamodeld in Sources */,
 				C8062F2A1EAE607E0079EB7E /* AppDelegate.m in Sources */,
+				C8062F681EB23B780079EB7E /* LookupReservationViewController.m in Sources */,
 				C8062F521EAFCF980079EB7E /* AvailabilityViewController.m in Sources */,
 				C8062F551EB0E64E0079EB7E /* BookViewController.m in Sources */,
 				C8062F491EAEA48A0079EB7E /* HotelsViewController.m in Sources */,
