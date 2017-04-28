@@ -6,6 +6,8 @@
 //  Copyright © 2017 Austin Rogers. All rights reserved.
 //
 
+@import Crashlytics;
+
 #import "ViewController.h"
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
@@ -32,10 +34,10 @@
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
-    browseButton.backgroundColor = [UIColor colorWithRed:0.60 green:0.0 blue:0.00 alpha:1.0];
+    browseButton.backgroundColor = [UIColor colorWithRed:0.60 green:0.00 blue:0.00 alpha:1.0];
     
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
-    bookButton.backgroundColor = [UIColor colorWithRed:0.70 green:0.00 blue:0.0 alpha:1.0];
+    bookButton.backgroundColor = [UIColor colorWithRed:0.70 green:0.00 blue:0.00 alpha:1.0];
     
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     lookupButton.backgroundColor = [UIColor colorWithRed:0.80 green:0.00 blue:0.00 alpha:1.0];
@@ -74,12 +76,15 @@
 }
 
 - (void)browseButtonSelected{
+    [Answers logCustomEventWithName:@"ViewController - Browse Button Pressed" customAttributes:nil];
+    
     HotelsViewController *newHotelsView = [[HotelsViewController alloc]init];
     
     [self.navigationController pushViewController:newHotelsView animated:YES];
 }
 
 - (void)bookButtonSelected{
+    [Answers logCustomEventWithName:@"ViewController - Book Button Pressed" customAttributes:nil];
     DatePickerViewController *newDatePickerView = [[DatePickerViewController alloc]init];
     
     [self.navigationController pushViewController:newDatePickerView animated:YES];

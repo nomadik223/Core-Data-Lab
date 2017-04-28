@@ -6,6 +6,7 @@
 //  Copyright © 2017 Austin Rogers. All rights reserved.
 //
 
+
 #import "LookupReservationViewController.h"
 
 #import "Reservation+CoreDataClass.h"
@@ -29,8 +30,8 @@
 @property(strong, nonatomic) UITableView *tableView;
 @property(strong, nonatomic) NSArray *reservationDetails;
 @property(strong, nonatomic) UISearchBar *searchBar;
-@property(strong, nonatomic) NSArray *searchResult;
-@property(strong,nonatomic) NSMutableArray *filteredReservation;
+//@property(strong, nonatomic) NSArray *searchResult;
+@property(strong, nonatomic) NSMutableArray *filteredReservation;
 
 @end
 
@@ -39,7 +40,7 @@
 
 BOOL isSearching;
 
--(NSArray *)reservationDetails {
+- (NSArray *)reservationDetails {
     if (!_reservationDetails) {
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         
@@ -60,22 +61,26 @@ BOOL isSearching;
     return _reservationDetails;
 }
 
--(void)loadView {
+- (void)loadView {
+    
     [super loadView];
     
     [self setupViewLayout];
     
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
+    
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     [self.tableView reloadData];
     
 }
 
--(void)setupViewLayout {
+- (void)setupViewLayout {
+    
     self.searchBar = [[UISearchBar alloc]init];
     self.tableView = [[UITableView alloc]init];
     
@@ -111,11 +116,10 @@ BOOL isSearching;
     
     [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
     
-    [self.searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];}
+}
 
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//MARK: Required methods for UITableView DataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (isSearching) {
         return self.filteredReservation.count;
@@ -126,7 +130,7 @@ BOOL isSearching;
     
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (cell == nil) {
@@ -146,19 +150,19 @@ BOOL isSearching;
     
     NSString *formattedEndDateString = [dateFormatter stringFromDate:reservations.endDate];
     
-    //cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, From: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, formattedStartDateString, formattedEndDateString];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, From: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, formattedStartDateString, formattedEndDateString];
     cell.textLabel.numberOfLines = 0;
     
     return cell;
 }
 
+
+//MARK: searchBar searching logic
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     isSearching = YES;
-    //    self.filteredReservation = [[NSMutableArray alloc]init];
-    //    [self.tableView reloadData];
 }
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"Text change - %d",isSearching);
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     isSearching = YES;
     if ([searchText isEqualToString:@""]) {
         isSearching = NO;
@@ -169,13 +173,13 @@ BOOL isSearching;
     }
     [self.tableView reloadData];
 }
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = @"";
     self.filteredReservation = nil;
     [self.tableView reloadData];
     [searchBar resignFirstResponder];
     isSearching = NO;
-    NSLog(@"Cancel clicked");
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -184,12 +188,11 @@ BOOL isSearching;
         self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", searchBar.text, searchBar.text]] mutableCopy];
     }
     isSearching = NO;
-    NSLog(@"Search Clicked");
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     isSearching = NO;
-    //    [self.tableView reloadData];
 }
+
 @end
